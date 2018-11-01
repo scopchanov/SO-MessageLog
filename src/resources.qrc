@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/pix">
+        <file>images/icons/48/error.png</file>
+        <file>images/icons/48/information.png</file>
+        <file>images/icons/48/warning.png</file>
+    </qresource>
+</RCC>
