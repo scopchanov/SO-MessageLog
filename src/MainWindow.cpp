@@ -30,7 +30,6 @@ SOFTWARE.
 #include <QComboBox>
 #include <QPushButton>
 #include <QDateTime>
-#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
 	QWidget(parent)
@@ -44,9 +43,12 @@ MainWindow::MainWindow(QWidget *parent) :
 	auto *btnPost = new QPushButton(tr("Post"), this);
 	auto *btnDeleteAll = new QPushButton(tr("Delete All"), this);
 
-	cmbType->addItem(QIcon(QPixmap(":/pix/images/icons/48/information.png")), "I");
-	cmbType->addItem(QIcon(QPixmap(":/pix/images/icons/48/warning.png")), "W");
-	cmbType->addItem(QIcon(QPixmap(":/pix/images/icons/48/error.png")), "E");
+	cmbType->addItem(QIcon(QPixmap(":/pix/images/icons/48/information.png")),
+					 "I");
+	cmbType->addItem(QIcon(QPixmap(":/pix/images/icons/48/warning.png")),
+					 "W");
+	cmbType->addItem(QIcon(QPixmap(":/pix/images/icons/48/error.png")),
+					 "E");
 
 	editMessage->setPlaceholderText(tr("Enter message here..."));
 
@@ -70,11 +72,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	resize(640, 480);
 
-	connect(btnPost, &QPushButton::clicked, [messageList, cmbType, editMessage](){
+	connect(btnPost, &QPushButton::clicked, [messageList, cmbType,
+			editMessage](){
 		messageList->addMessage(editMessage->text(),
-								cmbType->itemIcon(cmbType->currentIndex()).pixmap(48, 48),
+								cmbType->itemIcon(cmbType->currentIndex())
+								.pixmap(48, 48),
 								QDateTime::currentDateTime());
 	});
 
-	connect(btnDeleteAll, &QPushButton::clicked, messageList, &MessageList::clearAll);
+	connect(btnDeleteAll, &QPushButton::clicked, messageList,
+			&MessageList::clearAll);
 }

@@ -22,7 +22,8 @@ SOURCES += \
 HEADERS += \
     MainWindow.h \
     MessageList.h \
-    Delegate.h
+    Delegate.h \
+    Delegate_p.h
 
 RESOURCES += \
     resources.qrc

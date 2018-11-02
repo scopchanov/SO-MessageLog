@@ -30,6 +30,7 @@ SOFTWARE.
 MessageList::MessageList(QWidget *parent) :
 	QListView(parent)
 {
+	auto *delegate = new Delegate(this);
 	QPalette p(palette());
 
 	p.setBrush(QPalette::WindowText, QColor("#303030"));
@@ -41,13 +42,19 @@ MessageList::MessageList(QWidget *parent) :
 	p.setBrush(QPalette::Text, QColor("#616b71"));
 	p.setBrush(QPalette::Highlight, QColor("#E2E4E5"));
 
+	delegate->setContentsMargins(8, 8, 8, 8);
+	delegate->setIconSize(32, 32);
+	delegate->setHorizontalSpacing(8);
+	delegate->setVerticalSpacing(4);
+
 	setPalette(p);
 	setFont(QFont("MSShellDlg 2", 12));
 	setModel(new QStandardItemModel(this));
-	setItemDelegate(new Delegate(this));
+	setItemDelegate(delegate);
 }
 
-void MessageList::addMessage(const QString &text, const QPixmap &pixmap, const QDateTime &dateTime)
+void MessageList::addMessage(const QString &text, const QPixmap &pixmap,
+							 const QDateTime &dateTime)
 {
 	auto *item = new QStandardItem(QIcon(pixmap), text);
 
